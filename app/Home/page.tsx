@@ -2,10 +2,12 @@ import AboutMe from "@/Components/Features/AboutMe";
 import Education from "@/Components/Features/Education";
 import GetInTouch from "@/Components/Features/GetInTouch";
 import { MyBriefcase } from "@/Components/Features/MyBriefcase";
-import MySkills from "@/Components/Features/MySkills";
+import MySkills from "@/Components/Features/Experience";
 import NavComponent from "@/Components/Layout/NavComponent";
-import Section from "@/Components/UI/Seccion";
+import Section from "@/Components/UI/Section";
 import React from "react";
+import Experience from "@/Components/Features/Experience";
+import ExperienceSection from "@/Components/Features/ExperienceTimeline";
 
 const page = () => {
   return (
@@ -15,8 +17,8 @@ const page = () => {
         <Section title="AboutMe">
           <AboutMe />
         </Section>
-        <Section title="MySkills">
-          <MySkills />
+        <Section title="Experience">
+          <Experience />
         </Section>
         <Section title="MyBriefcase">
           <MyBriefcase />
