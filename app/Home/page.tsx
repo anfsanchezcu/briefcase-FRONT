@@ -17,7 +17,7 @@ const page = () => {
         <Section title="AboutMe">
           <AboutMe />
         </Section>
-        <Section title="Experience">
+        <Section title="Experience" screen={false} >
           <Experience />
         </Section>
         <Section title="MyBriefcase">
