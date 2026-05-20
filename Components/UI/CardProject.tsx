@@ -2,26 +2,18 @@ import React from "react";
 import CardExperience from "./CardExperience";
 
 type Props = {
-  role: string;
-  company: string;
-  date: string;
+  title: string;
   description: string;
-  keywords: string[];
+  github: string;
+  demo: string;
   image: string;
 };
 
-const CardProject = ({
-  role,
-  company,
-  date,
-  description,
-  keywords,
-  image,
-}: Props) => {
+const CardProject = ({demo, github, description, title, image}: Props) => {
   const HeaderProject = () => {
     return (
       <div className="h-40 w-52 md:h-44 md:w-60 overflow-hidden">
-        <img className="w-full h-full object-cover object-center" src={image} alt={`project-${company}`} />
+        <img className="w-full h-full object-cover object-center" src={image} alt={`project-${title}`} />
       </div>
     );
   };
@@ -29,7 +21,7 @@ const CardProject = ({
   const BodyProject = () => {
     return (
       <div className=" p-3">
-        <h3 className="text-white font-semibold text-xs md:text-sm">{role}</h3>
+        <h3 className="text-white font-semibold text-xs md:text-sm">{title}</h3>
       </div>
     );
   };

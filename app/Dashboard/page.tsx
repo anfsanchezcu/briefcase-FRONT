@@ -1,13 +1,28 @@
 "use client";
-import React, { useState } from "react";
+import ProjectForm from "@/Components/Forms/ProjectForm";
+import React, { useRef, useState } from "react";
 
 const Dashboard = () => {
   const buttonStyles =
     "hover:scale-101 cursor-default hover:bg-sky-400/30  px-3 py-1 bg-sky-500/20 text-sky-200 rounded-full text-xl border border-sky-400/30";
 
-  const [activeScreen, setactiveScreen] = useState("option");
-  const [Option, setOption] = useState("");
-  const [Operation, setOperation] = useState("");
+  type Screens = "option" | "operation";
+
+  const [activeScreen, setactiveScreen] = useState<Screens>("option");
+  const toEdit = useRef("");
+  const operation = useRef("");
+
+  const handlerClick = (screen: Screens, value = "") => {
+    setactiveScreen(screen);
+
+    if (value == "") {
+      toEdit.current = "";
+      operation.current = "";
+    }
+
+    if (toEdit.current == "") toEdit.current = value;
+    else operation.current = value;
+  };
 
   const ScreenOptions = () => {
     return (
@@ -15,31 +30,47 @@ const Dashboard = () => {
         <h1 className="font-semibold  text-xl mb-5">DASHBOARD | OPTIONS</h1>
         <button
           className={`${buttonStyles}`}
-          onClick={() => setactiveScreen("operation")}
+          onClick={() => handlerClick("operation", "experience")}
         >
           Experiences
         </button>
         <button
           className={`${buttonStyles}`}
-          onClick={() => setactiveScreen("operation")}
+          onClick={() => handlerClick("operation", "projects")}
         >
           Projects
         </button>
       </>
     );
   };
-
   const ScreenOperations = () => {
     return (
       <>
-        <h1 className="font-semibold  text-xl mb-5">DASHBOARD | OPERATIONS</h1>
-        <button className={`${buttonStyles}`}>Crear Nuevo</button>
-        <button className={`${buttonStyles}`}>Editar</button>
-        <button className={`${buttonStyles}`}>Eliminar</button>
-        
+        <h1 className="font-semibold  text-xl mb-5 uppercase">
+          DASHBOARD | {toEdit.current}
+        </h1>
+        <button
+          className={`${buttonStyles}`}
+          onClick={() => handlerClick("operation", "save")}
+        >
+          Crear Nuevo
+        </button>
+        <button
+          className={`${buttonStyles}`}
+          onClick={() => handlerClick("operation", "update")}
+        >
+          Editar
+        </button>
+        <button
+          className={`${buttonStyles}`}
+          onClick={() => handlerClick("operation", "delete")}
+        >
+          Eliminar
+        </button>
+
         <button
           className={` ${buttonStyles} bg-amber-50 m-5 `}
-          onClick={() => setactiveScreen("option")}
+          onClick={() => handlerClick("option")}
         >
           Atras
         </button>
@@ -54,7 +85,8 @@ const Dashboard = () => {
   return (
     <section className="h-screen flex items-center justify-center  w-full bg-purple-950">
       <div className="w-11/12 h-11/12 rounded-2xl border-[1px] backdrop-blur-sm border-sky-400/30 gap-2 flex flex-col justify-center items-center">
-        {activeScreen != "" && screens[activeScreen]}
+        {/* {activeScreen  && screens[activeScreen]} */}
+        {<ProjectForm />}
       </div>
     </section>
   );
